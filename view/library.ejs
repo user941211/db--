@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 서재</title>
+</head>
+<body>
+    <div align ="center">
+        
+        <p><a href="/">[목록으로]</a></p>
+        <form action="/logout" method="post" style="display: inline;">
+            <input type="submit" value="로그아웃">
+        </form>
+        <h2><%= user.username %>님의 대출 목록</h2>
+        <table border="1" get="/library">
+            <tr>
+                <th>제목</th>
+                <th>대출일자</th>
+            </tr>
+            <% library.forEach(book => { %>
+                <tr>
+                    <td><%= book.title %></td>
+                    <td><%= book.due %></td>
+                </tr>
+            <% }); %>        
+        </table>
+    </div>
+</body>
+</html>

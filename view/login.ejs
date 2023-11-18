@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+</head>
+<body>
+    <div align="center">
+        <% if (error) { %>
+            <p><%= error %></p>
+        <% } %>
+        <form action="/login" method="post" >
+            <div>
+                <div>이메일 :</div>
+                <input type="text" id="email" name="email" placeholder="eamil">
+            </div>
+            <div>
+                <div>암호 :</div>
+                <input type="password" id="password" name="password" placeholder="password">
+            </div>
+            <input type="submit" value="로그인">
+            <input type="reset" value="취소">
+        </form>
+    </div>
+</body>
+</html>

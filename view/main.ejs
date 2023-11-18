@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+        <h2>My Simple Twitter!!</h2>
+        <hr>
+        <form action="/tweet" method="post">
+            @<%= login %>
+            <input type="text" name="message">
+            <input type="submit" value="Tweet">
+        </form>
+        <hr>
+    </div>
+    <% if (records.length > 0) { %>
+        <ul>
+            <% for (const row of records) { %>
+                <li>
+                    <%= row.writer %> :: 
+                    <%= row.body %>,
+                    <%= row.time %>
+                </li>
+            <% } %>
+        </ul>
+    <% } %>
+</body>
+</html>

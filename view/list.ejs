@@ -1,0 +1,35 @@
+<!-- views/list.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <% if (user) { %>
+        <p><%= user.username %>님</p>
+        <p><a href="/library">[내 서재]</a></p>
+        <form action="/logout" method="post" style="display: inline;">
+            <input type="submit" value="로그아웃">
+        </form>
+    <% } else { %>
+        <p><a href="/login">[로그인]</a></p>
+    <% } %>
+    <table border="1" get="/list">
+        <tr>
+            <th>제목</th>
+            <th>저자</th>
+            <th>출판사</th>
+        </tr>
+        <% books.forEach(book => { %>
+            <tr>
+                <td><a href="book/<%= book.bid %>"><%= book.title %></a></td>
+                <td><%= book.writer %></td>
+                <td><%= book.publisher %></td>
+            </tr>
+        <% }); %>        
+    </table>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- views/detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+</head>
+
+<body>
+    <div align="center">
+        <% if (user) { %>
+            <div style="display:inline">
+                <p><%= user.username %>님</p>
+            <p><a href="/library">[내 서재]</a></p>
+            <form action="/logout" method="post">
+                <input type="submit" value="로그아웃">
+            </form>
+            <p><a href="/">[목록으로]</a></p>
+            </div>
+            
+        <% } else { %>
+            <p><a href="/">[목록으로]</a></p>
+        <% } %>
+        <table get="/book/:id">
+            <% books.forEach(book=> { %>
+                <tr>
+                    <th>제목</th>
+                    <td>
+                        <input type="text" id="title" value="<%= book.title %>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <th>저자</th>
+                    <td>
+                        <input type="text" id="writer" value="<%= book.writer %>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td>
+                        <textarea rows="10" cols="50" id="description"><%= book.description %></textarea>
+                    </td>
+                </tr>
+                <% if (book.available === "Y") { %>
+                    <tr>
+                        <td colspan="2">
+                            <form action="/rent/<%= book.bid %>" method="post">
+                                <input type="submit" value="대출">
+                            </form>
+                        </td>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2">
+                            <p style="color:red">[대출 불가]</p>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }); %>
+            
+        </table>
+        <!-- <form action="/rent/" method="post">
+            <input type="submit" value="대출">
+        </form> -->
+        <!-- <input type="submit" value="대출"> -->
+    </div>
+
+</body>
+
+</html>
